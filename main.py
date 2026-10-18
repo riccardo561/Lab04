@@ -19,19 +19,24 @@ def main():
 
         if scelta == "1":
             nuovo_nome = input("Inserisci il nuovo nome del centro fieristico: ")
-            # TODO: Aggiorna il nome del centro fieristico
+            if nuovo_nome.isdigit():
+                print('Errore nella modifica del nome, ripetere nuovamente')
+            else:
+                lingotto.nome=nuovo_nome
+                print(f'Il nome è stato modificato con successo a : {lingotto.nome}')
 
         elif scelta == "2":
             file_path = "dati_lingotto.csv"
             try:
                 lingotto.carica_file_dati(file_path)
                 print("Dati caricati correttamente.")
+                #lingotto.stampa_stand()
             except FileNotFoundError:
                 print("File non trovato.")
 
         elif scelta == "3":
-            codice_stand = input("Codice stand: ")
-            codice_espositore = input("Codice espositore: ")
+            codice_stand = input("Codice stand: ").upper()
+            codice_espositore = input("Codice espositore: ").upper()
             try:
                 lingotto.assegna_stand_a_espositore(codice_stand, codice_espositore)
                 print("Stand assegnato con successo.")
